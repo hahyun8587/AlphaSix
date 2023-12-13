@@ -38,7 +38,7 @@ class AlphaSixSimulator(Simulator):
         return next_s
     
     
-    def is_terminal(self, s: np.ndarray, a: int) -> bool:
+    def is_terminal(self, s: np.ndarray, a: int) -> int:
         direction = [(0, -1), (-1, -1), (-1, 0), (-1, 1)]
         locs = self._a_to_locs(a)
         
@@ -65,7 +65,7 @@ class AlphaSixSimulator(Simulator):
             
                 for k in range(6):
                     if cnt[-s[1][0][0]] == 6:
-                        return True
+                        return -1
                     
                     cnt[s[0][ty][tx]] -= 1
                     
@@ -80,14 +80,14 @@ class AlphaSixSimulator(Simulator):
                     
                     cnt[s[0][hy][hx]] += 1
         
-        return False
+        return 0
                 
 
     def _a_to_locs(self, a: int) -> list:
         locs = [-1, -1]
         
         for i in range(1, self._board_size ** 2 - 1):
-               if (i ** 2 + i * 721) / 2 > a:
+               if (-i ** 2 + i * 721) / 2 > a:
                    locs[0] = i - 1
                    locs[1] = a - ((i - 1) ** 2 + (i - 1) * 721) + locs[0] + 1
                    
