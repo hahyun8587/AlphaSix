@@ -89,7 +89,7 @@ class AlphaSixSimulator(Simulator):
         for i in range(1, self._board_size ** 2 - 1):
                if (-i ** 2 + i * 721) / 2 > a:
                    locs[0] = i - 1
-                   locs[1] = a - ((i - 1) ** 2 + (i - 1) * 721) + locs[0] + 1
+                   locs[1] = a - (-(i - 1) ** 2 + (i - 1) * 721) // 2 + locs[0] + 1
                    
                    break
         
