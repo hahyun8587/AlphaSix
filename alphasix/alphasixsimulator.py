@@ -31,8 +31,12 @@ class AlphaSixSimulator(Simulator):
         next_s = s.copy()
         locs = self._a_to_locs(a)
         
-        next_s[0][locs[0] // self._board_size][locs[0] % self._board_size] = s[1][0][0]
-        next_s[0][locs[1] // self._board_size][locs[1] % self._board_size] = s[1][0][0]
+        for i in range(2):
+            if next_s[0][locs[i] // self._board_size][locs[i] % self._board_size] != 0:
+                return None
+        
+            next_s[0][locs[i] // self._board_size][locs[i] % self._board_size] = s[1][0][0]
+            
         next_s[1].fill(-s[1][0][0])
         
         return next_s
