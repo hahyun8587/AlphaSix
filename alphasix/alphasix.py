@@ -20,7 +20,7 @@ def main(argc: int, argv: list):
         if argc < 5:
             print('usage: {argv[0]} -app <ip> <port> <color>')
             
-        agent.apply(AlphaSixEnvironment(19), argv[2], argv[3], argv[4])
+        agent.apply(AlphaSixEnvironment(19), argv[2], int(argv[3]), argv[4])
 
 if __name__ == '__main__':
     main(len(sys.argv), sys.argv)
