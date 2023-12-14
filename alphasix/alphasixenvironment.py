@@ -1,7 +1,7 @@
 import numpy as np
-from ..tools.AlphaZero.alphazero.environment import Environment
-from ..tools.CONNSIX.connsix import draw_and_read, lets_connect
-from utils import a_to_locs, locs_to_a, move_to_coords
+from tools.AlphaZero.alphazero.environment import Environment
+from tools.CONNSIX.connsix import draw_and_read, lets_connect
+from .utils import a_to_locs, locs_to_a, move_to_coords
 
 class AlphaSixEnvironment(Environment):
     #class variables

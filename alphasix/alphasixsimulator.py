@@ -1,6 +1,6 @@
 import numpy as np
 from tools.AlphaZero.alphazero.simulator import Simulator
-from utils import a_to_locs
+from .utils import a_to_locs
 
 class AlphaSixSimulator(Simulator):
     """Simulator of alphasix.

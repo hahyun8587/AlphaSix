@@ -14,13 +14,13 @@ def a_to_locs(self, a: int) -> list:
         return locs
 
 
-def move_to_coords(self, moves: str) -> list:
+def move_to_coords(moves: str) -> list:
     if moves == '':
         return []
     
     coords = [] 
     
-    for move in moves.split(':'):
+    for move in moves:
         coord = []
         coord.append(-int(move[1:]) + 19)
         

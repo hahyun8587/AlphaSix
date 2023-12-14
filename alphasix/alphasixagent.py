@@ -1,7 +1,7 @@
 import numpy as np
 from tools.AlphaZero.alphazero.environment import Environment
-from ..tools.AlphaZero.alphazero.agent import Agent
-from ..tools.AlphaZero.alphazero.node import Node
+from tools.AlphaZero.alphazero.agent import Agent
+from tools.AlphaZero.alphazero.node import Node
 
 class AlphaSixAgent(Agent):
     

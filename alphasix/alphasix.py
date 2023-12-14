@@ -4,6 +4,7 @@ from tools.AlphaZero.alphazero.agent import Agent
 from tools.AlphaZero.alphazero.model import AlphaZeroModel, AlphaZeroLoss
 from .alphasixsimulator import AlphaSixSimulator
 from .alphasixenvironment import AlphaSixEnvironment
+from .alphasixagent import AlphaSixAgent
 
 def main(argc: int, argv: list):
     model = AlphaZeroModel(n_res=6, p_head_out_dim=64980, 
@@ -11,7 +12,7 @@ def main(argc: int, argv: list):
     
     model.compile(optimizer='adam', loss=AlphaZeroLoss())
     
-    agent = Agent(model, AlphaSixSimulator(), 64980, 1)
+    agent = AlphaSixAgent(model, AlphaSixSimulator(), 64980, 1)
     
     if argv[1] == '-tr':
         agent.train(steps=5000, n_ep_train=32, batch_size=128, 
