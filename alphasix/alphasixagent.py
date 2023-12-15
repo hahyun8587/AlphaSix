@@ -8,33 +8,35 @@ class AlphaSixAgent(Agent):
     def apply(self, env: Environment, ip: str, port: int, color: str) -> None:
         init_s = env.gen_init_s(ip, port, color)     
         
-        if color == 'BALCK':
+        if color == 'BLACK':
             a = env.response(-1)
             root_s = self._simulator.simulate(init_s, a)
         else:
             env.response(-2)
             root_s = init_s
         
-        root_p, root_v = self._model(root_s[np.newaxis, :], False)
-        root_p = root_p.numpy().reshape(-1)
-        root_v = root_v[0][0]
-        root = Node(root_s, root_v, root_p, False)
+        #root_p, root_v = self._model(root_s[np.newaxis, :], False)
+        #root_p = root_p.numpy().reshape(-1)
+        #root_v = root_v[0][0]
+        #root = Node(root_s, root_v, root_p, False)
+        
+        root = Node(root_s, 0.5, np.random.rand(64980), False)
         
         while 1:
-            pi = root.mcts()
+            pi = root.mcts(400)        
             a = env.response(np.random.choice(self._n_a, p=pi))
-            
+           
             if a == -2:
                 break
             
             child = root.get_child(a)
             
             if child is None:
-                root_s = self._simulator.simulate(init_s, a)
-                root_p, root_v = self._model(root_s[np.newaxis, :], False)
-                root_p = root_p.numpy().reshape(-1)
-                root_v = root_v[0][0]
-                root = Node(root_s, root_v, root_p, False)
+                #root_s = self._simulator.simulate(init_s, a)
+                #root_p, root_v = self._model(root_s[np.newaxis, :], False)
+                #root_p = root_p.numpy().reshape(-1)
+                #root_v = root_v[0][0]
+                root = Node(root_s, 0.5, np.random.rand(64980), False)
             else:
                 root = child
     

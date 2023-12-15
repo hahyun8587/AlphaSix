@@ -31,6 +31,8 @@ class AlphaSixSimulator(Simulator):
     def simulate(self, s: np.ndarray, a: int) -> np.ndarray:
         next_s = s.copy()
         locs = a_to_locs(a)
+        locs[0] = int(locs[0])
+        locs[1] = int(locs[1])
         
         for i in range(2):
             if next_s[0][locs[i] // self._board_size][locs[i] % self._board_size] != 0:

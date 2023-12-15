@@ -19,7 +19,7 @@ class AlphaSixEnvironment(Environment):
     def gen_init_s(self, ip: str, port: int, color: str) -> np.ndarray:
         s = np.zeros((2, self._board_size, self._board_size), dtype=np.int32)
         
-        coords = move_to_coords(lets_connect(ip, port, color).split(':'))
+        coords = move_to_coords(lets_connect(ip, port, color))
         
         for coord in coords:
             s[0][coord[0]][coord[1]] = self.RED 
@@ -44,20 +44,20 @@ class AlphaSixEnvironment(Environment):
                     move = move + chr(loc % self._board_size + 65)
                 else:
                     move = move + chr(loc % self._board_size + 66)
-                
-                move = move + str(loc // self._board_size + 19) 
+                #print(loc // self._board_size)
+                move = move + str(-(loc // self._board_size) + 19) 
                 
                 moves.append(move)
-        
+            #print(':'.join(moves))
             sig = draw_and_read(':'.join(moves)) 
         
-        if sig == 'WIN' or sig == 'LOSE' or 'EVEN':
+        if sig == 'WIN' or sig == 'LOSE' or sig == 'EVEN':
             return -2 
         
         locs = []
-        
+    
         for coord in move_to_coords(sig):
             locs.append(coord[0] * self._board_size + coord[1])                    
-            
+        #print(locs)        
         return locs_to_a(locs)
     
