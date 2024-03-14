@@ -1,49 +1,26 @@
-def a_to_locs(a: int) -> list:
-        if a == -1:
-            return [180]
-        
-        locs = []
-        
-        for i in range(1, 19 ** 2 - 1):
-               if (-i ** 2 + i * 721) / 2 > a:
-                   locs.append(i - 1)
-                   locs.append(a - (-(i - 1) ** 2 + (i - 1) * 721) // 2 + locs[0] + 1)
-                   
-                   break
-        
-        return locs
+from math import sqrt, floor
 
+def atoc(a: int, n: int) -> tuple:
+    """Converts action `a` into the corresponding pairs of coordinate.  
 
-def move_to_coords(moves: str) -> list:
-    if moves == '':
-        return []
-    
-    coords = [] 
-    
-    for move in moves.split(':'):
-        coord = []
-      
-        coord.append(-int(move[1:]) + 19)
+    The coordinate is indices of 2D array which represents the board. 
+
+    Args:
+        a (int): The action to be converted.
+        n (int): The size of the board.
         
-        if move[0] <= 'H': 
-            coord.append(ord(move[0]) - 65) 
-        else:
-            coord.append(ord(move[0]) - 66) 
-        
-        coords.append(coord) 
+    Raises: 
+        ValueError: Raises when `a` is smaller than `0` or bigger than 
+            max action. Max action is calculated as 
+            `n x n x (n x n - 1) / 2 - 1`.
+    """
     
-    return coords
+    if a < 0 or a > n * n * (n * n - 1) / 2 - 1:
+        raise ValueError('action out of range.')
+    
+    i = floor((2 * n * n - 1 - sqrt((2 * n * n - 1) ** 2 - 8 * a)) / 2 + 1)   
+    locs = [i - 1, a + ((i - 1) ** 2 - (2 * n * n - 1) * (i - 1)) / 2 + i]
 
+    return ((loc // n, loc % n) for loc in locs) 
 
-def locs_to_a(locs: list) -> int: 
-    if len(locs) == 1:
-        return -1
-    
-    if locs[0] < locs[1]:
-        a = (-(locs[0] ** 2) + locs[0] * 721) // 2 + locs[1] - locs[0] - 1
-    else:
-        a = (-(locs[1] ** 2) + locs[1] * 721) // 2 + locs[0] - locs[1] - 1 
-    
-    return a
-    
     
