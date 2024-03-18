@@ -21,6 +21,6 @@ def atoc(a: int, n: int) -> tuple:
     i = floor((2 * n * n - 1 - sqrt((2 * n * n - 1) ** 2 - 8 * a)) / 2 + 1)   
     locs = [i - 1, a + ((i - 1) ** 2 - (2 * n * n - 1) * (i - 1)) / 2 + i]
 
-    return ((loc // n, loc % n) for loc in locs) 
+    return tuple((loc // n, loc % n) for loc in locs) 
 
     
