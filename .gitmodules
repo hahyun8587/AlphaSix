@@ -1,6 +1,3 @@
-[submodule "AlphaZero"]
-	path = AlphaZero
-	url = https://github.com/hahyun8587/AlphaZero
 [submodule "tools/AlphaZero"]
 	path = tools/AlphaZero
 	url = https://github.com/hahyun8587/AlphaZero
