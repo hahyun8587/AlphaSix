@@ -1,6 +1,6 @@
 import numpy as np
 from tools.AlphaZero.alphazero.simulator import Simulator
-from alphasix.utils import atoc
+from utils import atoc
 
 class AlphaSixSimulator(Simulator):
     """Simulator of alphasix.
