@@ -1,6 +1,6 @@
 import sys
 import tensorflow as tf
-from alphasix.alphasixsimulator import AlphaSixSimulator
+from alphasixsimulator import AlphaSixSimulator
 from tools.AlphaZero.alphazero.agent import Agent
 from tools.AlphaZero.alphazero.model import AlphaZeroModel
 
@@ -8,11 +8,11 @@ from tools.AlphaZero.alphazero.model import AlphaZeroModel
 
 Alphasix training configuration
 * `40` steps of generating data and training
-* Generates `512 * n_gpu` episodes per step
+* Generates `512 * strategy.num_replicas_in_sync` episodes per step
 * `800` simulations for mcts
-* Replay buffer size of `4 * n_episode`
+* Replay buffer size of `4 * EPISODES`
 * Trains for `1` epoch per step
-* Samples `256 * n_gpu` examples per step
+* Samples `256 * num_replicas_in_sync` examples per step
 * Local batch size of `32`
 * Alpha of `0.00002`
 * Epsilon of `0.25`
